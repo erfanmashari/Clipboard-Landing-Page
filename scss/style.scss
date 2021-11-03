@@ -1,0 +1,452 @@
+@mixin center-align($margin-bottom: 0) {
+    width: 100%;
+    margin-bottom: $margin-bottom;
+    line-height: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin row-align($screen) {
+    display: flex;
+
+    @if $screen==large {
+        flex-direction: row;
+    }
+
+    @else if $screen==small {
+        flex-direction: column;
+        margin-bottom: 12px;
+    }
+
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin button($btn-color) {
+    margin-left: 6px;
+    margin-right: 6px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 12px;
+    padding-left: 26px;
+    padding-right: 26px;
+    border-radius: 32px;
+    color: #fff;
+
+    @if $btn-color==green {
+        background-color: hsl(171, 66%, 44%);
+        border-bottom: 4px solid hsl(171, 70%, 33%);
+    }
+
+    @else if $btn-color==blue {
+        background-color: hsl(233, 100%, 69%);
+        border-bottom: 4px solid hsl(233, 50%, 53%);
+    }
+}
+
+%ios-button-hover {
+    background-color: hsl(171, 65%, 50%);
+    border-bottom: 4px solid hsl(171, 66%, 44%);
+}
+
+%mac-button-hover {
+    background-color: hsl(233, 94%, 74%);
+    border-bottom: 4px solid hsl(233, 100%, 69%);
+}
+
+$button-margin: 4.5vh;
+$header-height: 10vh;
+$header-color: hsl(210, 10%, 33%);
+$paragraph-color: hsl(201, 11%, 66%);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Bai Jamjuree', 'Roboto', sans-serif;
+    background-image: url("../images/bg-header-desktop.png");
+    background-repeat: no-repeat;
+}
+
+#header {
+    @include center-align(100px);
+
+    img {
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+
+    ;
+
+    h1 {
+        color: $header-color;
+        line-height: $header-height;
+    }
+
+    p {
+        color: $paragraph-color;
+    }
+
+    .button-div {
+        margin-top: $button-margin;
+
+        .ios {
+            @include button(green)
+        }
+
+        .ios:hover {
+            @extend %ios-button-hover;
+        }
+
+        .mac {
+            @include button(blue)
+        }
+
+        .mac:hover {
+            @extend %mac-button-hover;
+        }
+    }
+}
+
+.main-header {
+    @include center-align(40px);
+
+    h2 {
+        color: $header-color;
+        line-height: $header-height;
+    }
+
+    p {
+        color: $paragraph-color;
+    }
+}
+
+.computer-side {
+    display: flex;
+    position: relative;
+    margin-bottom: 40px;
+
+    img {
+        position: relative;
+        left: -10vh;
+    }
+
+    .text-div {
+        height: 400px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        div {
+            p {
+                width: 65%;
+            }
+        }
+    }
+
+    div {
+        h3 {
+            color: $header-color;
+            line-height: $header-height;
+        }
+
+        p {
+            color: $paragraph-color;
+        }
+    }
+}
+
+.access-side {
+    @include center-align(40px);
+
+    h2 {
+        color: $header-color;
+        line-height: $header-height;
+    }
+
+    p {
+        margin-bottom: 8vh;
+        color: $paragraph-color;
+    }
+}
+
+.features {
+    @include center-align(40px);
+
+    h2,
+    h3 {
+        color: $header-color;
+        line-height: $header-height;
+    }
+
+    p {
+        color: $paragraph-color;
+    }
+
+    .features-div {
+        @include row-align(large);
+        margin-bottom: 100px;
+
+        div {
+            @include center-align(0);
+            height: 200px;
+
+            img {
+                width: 40px;
+            }
+
+            p {
+                padding: 6px
+            }
+        }
+    }
+
+    .brands-logo {
+        @include row-align(large);
+    }
+}
+
+.main-footer {
+    @include center-align(0);
+
+    h1 {
+        color: $header-color;
+        line-height: $header-height;
+    }
+
+    p {
+        color: $paragraph-color;
+    }
+
+    .button-div {
+        margin-top: $button-margin;
+
+        .ios {
+            @include button(green)
+        }
+
+        .ios:hover {
+            @extend %ios-button-hover;
+        }
+
+        .mac {
+            @include button(blue);
+        }
+
+        .mac:hover {
+            @extend %mac-button-hover;
+        }
+    }
+}
+
+.footer {
+    background-color: hsl(0, 18%, 96%);
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+
+    .footer-div {
+        @include row-align(large);
+        height: 100px;
+
+        img {
+            width: 50px;
+        }
+
+        div {
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            button {
+                cursor: pointer;
+                font-size: 18px;
+                text-align: start;
+                border: none;
+                outline: none;
+                color: $header-color;
+                background-color: inherit;
+            }
+
+            button:hover {
+                color: hsl(171, 66%, 44%);
+            }
+        }
+
+        span {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+
+            img {
+                width: 20px;
+                margin-left: 8px;
+                margin-right: 8px;
+                cursor: pointer;
+            }
+
+            img:hover {
+                filter: invert(100%);
+            }
+        }
+    }
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+@media only screen and (max-width: 786px) {
+    .features {
+        .features-div {
+            @include row-align(small);
+
+            div {
+                height: auto
+            }
+        }
+
+        .brands-logo {
+            @include row-align(small);
+
+            img {
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+    .computer-side {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            left: 0;
+        }
+
+        .text-div {
+            width: 100%;
+            height: auto;
+
+            div {
+                width: 100%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            p,
+            h3 {
+                width: 100%;
+            }
+        }
+    }
+
+    .footer {
+        .footer-div {
+            height: auto;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            img {
+                margin-bottom: 12px;
+            }
+
+            div {
+                justify-content: center;
+                align-items: center;
+
+                button {
+                    margin-bottom: 12px;
+                }
+            }
+
+            span {
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 444px) {
+    .button-div {
+        display: flex;
+        flex-direction: column;
+
+        .ios {
+            margin-bottom: 12px;
+        }
+    }
+}
